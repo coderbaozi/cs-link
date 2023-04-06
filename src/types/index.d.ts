@@ -1,3 +1,3 @@
 import { ITag } from './tags'
-
-export { ITag }
+import { IArticle } from './article'
+export { ITag, IArticle }
