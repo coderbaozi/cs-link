@@ -1,4 +1,5 @@
 import { ITag } from '@/types'
+import Link from 'next/link'
 import React, { ReactNode } from 'react'
 
 interface ITagProps {
@@ -20,9 +21,9 @@ const NavBar: React.FC<ITagProps> = ({ tags }) => {
           <nav aria-label="Site Nav" className="hidden gap-8 text-sm font-medium md:flex">
             {tags.map((tag) => {
               return (
-                <div key={tag.tagId} className="text-gray-500">
+                <Link href={`/article/${tag.tagId}`} key={tag.tagId} className="hover:text-dark-600 text-gray-500">
                   {tag.name}
-                </div>
+                </Link>
               )
             })}
           </nav>
