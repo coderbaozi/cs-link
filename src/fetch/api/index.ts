@@ -20,4 +20,16 @@ function getArticleInfo(articleId: string) {
   return fetcher.get({ url: '/getArticle', params: { articleId } })
 }
 
-export { getTags, getArticleList, getUserName, getArticleInfo }
+function getComment(articleId: string) {
+  return fetcher.get({ url: `/getComment/${articleId}` })
+}
+
+function login(username: string, password: string) {
+  return fetcher.post({ url: '/signin', data: { username, password } })
+}
+
+function getUserInfo(token: string) {
+  return fetcher.get({ url: '/getUserInfo', headers: { Authorization: token } })
+}
+
+export { getTags, getArticleList, getUserName, getArticleInfo, getComment, login, getUserInfo }
