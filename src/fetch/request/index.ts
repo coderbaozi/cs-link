@@ -7,7 +7,6 @@ class Fetcher {
   // create an axios instance
   constructor(config: powerRequestConfig) {
     this.instance = axios.create(config)
-
     // add global interceptors for every axios instance
     this.instance.interceptors.request.use(
       (config) => {
