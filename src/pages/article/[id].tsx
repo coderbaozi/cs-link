@@ -2,9 +2,11 @@ import React, { ReactNode } from 'react'
 import DefaultLayout from '@/layouts/default'
 import Head from 'next/head'
 import { ITag, IArticle } from '@/types'
-import { getTags, getArticleList } from '@/fetch/api'
+import { getTags, getArticleList, getComment } from '@/fetch/api'
 import ArticleCard from '@/components/ArticleCard'
 import { GetServerSidePropsContext } from 'next'
+import { Comment } from '@/types/comment.d'
+import CommentList from '@/components/CommentList'
 interface IProps {
   children?: ReactNode
   tags: ITag[]
@@ -23,7 +25,7 @@ const ArticlePage: React.FC<IProps> = ({ tags, articleList }) => {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link rel="icon" href="/favicon.ico" />
           </Head>
-          <ul className="flex flex-col justify-center items-center divide-y-2 divide-gray-200">
+          <ul className="flex flex-col justify-center items-center">
             {articleList.map((article) => {
               return (
                 <li className="mt-auto w-1/2" key={article.articleId}>

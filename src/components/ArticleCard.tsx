@@ -18,10 +18,8 @@ const ArticleCard: React.FC<IProps> = ({ article }) => {
         <Link href="#" className="text-xs text-dark-100 hover:underline hover:decoration-1 hover:text-blue-600">
           {article.username}
         </Link>
-        <Link className="text-neutral-400" href={'#'}>
-          {article.createTime}
-        </Link>
-        <Link className="text-neutral-400" href={'#'}>{`最后回复来自XX`}</Link>
+        <span className="text-neutral-400">{article.createTime}</span>
+        <span className="text-neutral-400">{`最后回复来自XX`}</span>
       </p>
     </article>
   )
