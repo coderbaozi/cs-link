@@ -1,12 +1,20 @@
 import { ITag } from '@/types'
 import Link from 'next/link'
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import store from '@/store'
+import UserSetting from './UserSetting'
 
 interface ITagProps {
   children?: ReactNode
   tags: ITag[]
 }
 const NavBar: React.FC<ITagProps> = ({ tags }) => {
+  const { userInfo } = store.getState().userReducer
+  const [hovering, sethovering] = useState(false)
+
+  const handleShow = () => {
+    sethovering((item) => !item)
+  }
   return (
     <>
       <div className="mx-auto max-w-screen-xl p-4">
@@ -29,13 +37,20 @@ const NavBar: React.FC<ITagProps> = ({ tags }) => {
           </nav>
 
           <div className="hidden flex-1 items-center justify-end gap-4 sm:flex">
-            <a className="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="">
-              Log in
-            </a>
-
-            <a className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white" href="">
-              Sign up
-            </a>
+            {userInfo ? (
+              <div onMouseOut={handleShow} onMouseOver={handleShow}>
+                <span className="text-xs cursor-pointer hover:underline hover:decoration-1">{userInfo.username}</span>
+                {hovering && (
+                  <div className="absolute">
+                    <UserSetting />
+                  </div>
+                )}
+              </div>
+            ) : (
+              <a className="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/login">
+                Log in
+              </a>
+            )}
           </div>
         </div>
       </div>
