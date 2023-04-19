@@ -1,17 +1,14 @@
-import { ITag } from '@/types'
-import Link from 'next/link'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { ReactNode, useState } from 'react'
 import store from '@/store'
 import UserSetting from './UserSetting'
-
+import Link from 'next/link'
 interface ITagProps {
   children?: ReactNode
-  tags: ITag[]
 }
-const NavBar: React.FC<ITagProps> = ({ tags }) => {
-  const { userInfo } = store.getState().userReducer
+const NavBar: React.FC<ITagProps> = () => {
+  const { userInfo } = store.getState().user
   const [hovering, sethovering] = useState(false)
-
+  const tags = store.getState().nav.tags
   const handleShow = () => {
     sethovering((item) => !item)
   }
@@ -57,5 +54,4 @@ const NavBar: React.FC<ITagProps> = ({ tags }) => {
     </>
   )
 }
-
 export default NavBar
