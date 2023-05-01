@@ -55,6 +55,24 @@ export function useTextArea() {
           textarea.setSelectionRange(position.start + 1, position.start + 1)
         }
         return
+      case 4:
+        textarea.value = textarea.value + text
+        return
+      case 5:
+        textarea.value = textarea.value + text
+        return
+      case 6:
+        textarea.value = textarea.value + text
+        return
+      case 7:
+        textarea.value = textarea.value + text
+        return
+      case 8:
+        textarea.value = textarea.value + text
+        return
+      default:
+        textarea.value = textarea.value + text
+        return
     }
   }
   return {

@@ -15,17 +15,17 @@ const Control: React.FC<IProps> = () => {
       <Icon icon="ooui:italic-i" onClick={() => handleControl?.(3)} className="cursor-pointer hover:text-purple-700" />
       <Icon icon="ri:quote-text" onClick={() => handleControl?.(4)} className="cursor-pointer hover:text-purple-700" />
       <Icon icon="ph:brackets-angle" onClick={() => handleControl?.(5)} className="cursor-pointer hover:text-purple-700" />
-      <Icon icon="ph:link-light" className="cursor-pointer hover:text-purple-700" />
+      <Icon icon="ph:link-light" onClick={() => handleControl?.(6)} className="cursor-pointer hover:text-purple-700" />
       <Icon
         icon="material-symbols:format-list-bulleted-rounded"
-        onClick={() => handleControl?.(6)}
+        onClick={() => handleControl?.(7)}
         vFlip={true}
         className="cursor-pointer hover:text-purple-700"
       />
-      <Icon icon="material-symbols:format-list-numbered" onClick={() => handleControl?.(7)} className="cursor-pointer hover:text-purple-700" />
-      <Icon icon="bi:list-task" onClick={() => handleControl?.(8)} className="cursor-pointer hover:text-purple-700" />
-      <Icon icon="fluent:mention-20-regular" onClick={() => handleControl?.(9)} className="cursor-pointer hover:text-purple-700" />
-      <Icon icon="octicon:project-template-24" onClick={() => handleControl?.(10)} className="cursor-pointer hover:text-purple-700" />
+      <Icon icon="material-symbols:format-list-numbered" onClick={() => handleControl?.(8)} className="cursor-pointer hover:text-purple-700" />
+      <Icon icon="bi:list-task" onClick={() => handleControl?.(9)} className="cursor-pointer hover:text-purple-700" />
+      <Icon icon="fluent:mention-20-regular" onClick={() => handleControl?.(10)} className="cursor-pointer hover:text-purple-700" />
+      <Icon icon="octicon:project-template-24" onClick={() => handleControl?.(11)} className="cursor-pointer hover:text-purple-700" />
     </div>
   )
 }

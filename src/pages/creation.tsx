@@ -30,18 +30,48 @@ const Creation: React.FC<IProps> = () => {
     switch (id) {
       case 0: // write mode value is 0
         return
-      case 1: // add Title value is 1
+      case 1: // Title value is 1
         insertContent('### ', null, id)
         setText(() => text + '### ')
         foucusTextArea()
         return
-      case 2: // add bold font
+      case 2: // bold font
         insertContent('****', { start: position.start, end: position.end }, id)
         setText(() => text + '****')
         return
-      case 3:
+      case 3: // italic font
         insertContent('**', { start: position.start, end: position.end }, id)
         setText(() => text + '**')
+        foucusTextArea()
+        return
+      case 4: // ref clock
+        insertContent('>', null, id)
+        setText(() => text + '>')
+        foucusTextArea()
+        return
+      case 5: // code block
+        insertContent('``` \n\n```', null, id)
+        setText(() => text + '``` \ncode\n```')
+        foucusTextArea()
+        return
+      case 6: // super link
+        insertContent(`Markdown语法](https://markdown.com.cn)`, null, id)
+        setText(() => text + `[Markdown语法](https://markdown.com.cn)`)
+        foucusTextArea()
+        return
+      case 7: // unordered list
+        insertContent(`- \n- \n `, null, id)
+        setText(() => text + `- \n- \n`)
+        foucusTextArea()
+        return
+      case 8: // ordered list
+        insertContent(`1. \n2. \n `, null, id)
+        setText(() => text + `1. \n2. \n`)
+        foucusTextArea()
+        return
+      case 9: // ordered list
+        insertContent(`- [ ] \n- [ ] \n `, null, id)
+        setText(() => text + `- [ ] \n- [ ] \n `)
         foucusTextArea()
         return
     }
