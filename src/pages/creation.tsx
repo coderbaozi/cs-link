@@ -3,6 +3,7 @@ import RichEditor from '@/components/RichText/RichEditor'
 import TabBar from '@/components/RichText/TabBar'
 import { useTextArea } from '@/hooks/useTextArea'
 import React, { ReactNode, createContext, useEffect, useState } from 'react'
+import { markdownToHtml } from '@/utils/markdownToHtml'
 interface IProps {
   children?: ReactNode
 }
@@ -12,10 +13,12 @@ export const ControlContext = createContext<TControl | null>(null)
 const Creation: React.FC<IProps> = () => {
   useEffect(() => {
     foucusTextArea()
+    const res = markdownToHtml(text)
+    console.log(res)
   })
   const [type, setType] = useState(0)
   const [text, setText] = useState('')
-  const { foucusTextArea, getCursorPosition, insertContent } = useTextArea()
+  const { position, foucusTextArea, getCursorPosition, insertContent } = useTextArea()
   const enhanceGetCursorPosition = (textArea: HTMLTextAreaElement | null) => {
     return getCursorPosition(textArea)
   }
@@ -28,13 +31,18 @@ const Creation: React.FC<IProps> = () => {
       case 0: // write mode value is 0
         return
       case 1: // add Title value is 1
-        insertContent('### ', { start: 0, end: 0 })
+        insertContent('### ', null, id)
         setText(() => text + '### ')
         foucusTextArea()
         return
       case 2: // add bold font
-        insertContent('****', { start: 0, end: 0 })
+        insertContent('****', { start: position.start, end: position.end }, id)
         setText(() => text + '****')
+        return
+      case 3:
+        insertContent('**', { start: position.start, end: position.end }, id)
+        setText(() => text + '**')
+        foucusTextArea()
         return
     }
   }

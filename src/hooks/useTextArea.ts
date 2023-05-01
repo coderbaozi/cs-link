@@ -36,12 +36,25 @@ export function useTextArea() {
     }
     return
   }
-  const insertContent = (text: string, position: ICursorPosition) => {
+  const insertContent = (text: string, position: ICursorPosition | null, type: number) => {
     const textarea = document.getElementsByTagName('textarea')[0]
-    if (textarea) {
-      textarea.value = textarea.value.substring(0, position.start) + text + textarea.value.substring(position.end, textarea.value.length)
-      // TODO 柯里化
-      textarea.setSelectionRange(position.start + 2, position.start + 2)
+    switch (type) {
+      // type info into control.tsx component
+      case 1: // default cusor at last
+        textarea.value = textarea.value + text
+        return
+      case 2:
+        if (textarea && position) {
+          textarea.value = textarea.value.substring(0, position.start) + text + textarea.value.substring(position.end, textarea.value.length)
+          textarea.setSelectionRange(position.start + 2, position.start + 2)
+        }
+        return
+      case 3:
+        if (textarea && position) {
+          textarea.value = textarea.value.substring(0, position.start) + text + textarea.value.substring(position.end, textarea.value.length)
+          textarea.setSelectionRange(position.start + 1, position.start + 1)
+        }
+        return
     }
   }
   return {
