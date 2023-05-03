@@ -1,11 +1,10 @@
 import React, { ReactNode } from 'react'
 import DefaultLayout from '@/layouts/default'
 import Head from 'next/head'
-import { ITag, IArticle } from '@/types'
+import { IArticle } from '@/types'
 import { getArticleList } from '@/fetch/api'
 import ArticleCard from '@/components/ArticleCard'
 import { GetServerSidePropsContext } from 'next'
-import store from '@/store'
 interface IProps {
   children?: ReactNode
   articleList: IArticle[]
@@ -24,10 +23,11 @@ const ArticlePage: React.FC<IProps> = ({ articleList }) => {
         <ul className="flex flex-col justify-center items-center">
           {articleList.map((article) => {
             return (
-              <li className="mt-auto w-1/2" key={article.articleId}>
+              <li className="p-2 hover:scale-110 hover:shadow-xl hover:rounded-md duration-700 transition cursor-pointer mt-auto w-1/3" key={article.articleId}>
                 <ArticleCard article={article} />
               </li>
             )
+            //box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
           })}
         </ul>
       </DefaultLayout>

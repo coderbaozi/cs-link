@@ -23,7 +23,7 @@ const NavBar: React.FC<ITagProps> = () => {
               </span>
             </a>
           </div>
-          <nav aria-label="Site Nav" className="hidden gap-8 text-sm font-medium md:flex">
+          <nav aria-label="Site Nav" className="gap-8 text-sm font-medium md:flex">
             {tags.map((tag) => {
               return (
                 <Link href={`/article/${tag.tagId}`} key={tag.tagId} className="hover:text-dark-600 text-gray-500">
