@@ -35,11 +35,7 @@ const SignUp: React.FC<IProps> = () => {
 
             <div>
               <div className="relative">
-                <input
-                  className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
-                  placeholder="Enter email or username"
-                  {...usernameProps}
-                />
+                <input className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm" placeholder="Enter email or username" {...usernameProps} />
 
                 <span className="absolute inset-y-0 right-0 grid place-content-center px-4">
                   <Icon icon="mdi:user" />
@@ -62,9 +58,7 @@ const SignUp: React.FC<IProps> = () => {
               </div>
             </div>
 
-            <div
-              onClick={loginhandler}
-              className="block w-full rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white">
+            <div onClick={loginhandler} className="block w-full rounded-lg bg-blue-600 px-5 py-3 text-sm font-medium text-white">
               Sign in
             </div>
 
