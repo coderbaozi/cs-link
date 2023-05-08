@@ -7,6 +7,7 @@ interface ITagProps {
 }
 const NavBar: React.FC<ITagProps> = () => {
   const { userInfo } = store.getState().user
+
   const [hovering, sethovering] = useState(false)
   const tags = store.getState().nav.tags
   const handleShow = () => {
@@ -33,15 +34,19 @@ const NavBar: React.FC<ITagProps> = () => {
             })}
           </nav>
 
-          <div className="hidden flex-1 items-center justify-end gap-4 sm:flex">
+          <div className="flex-1 justify-end gap-4 sm:flex">
             {userInfo ? (
-              <div onMouseOut={handleShow} onMouseOver={handleShow}>
-                <span className="text-xs cursor-pointer hover:underline hover:decoration-1">{userInfo.username}</span>
-                {hovering && (
-                  <div className="absolute">
-                    <UserSetting />
+              <div className="relative" onMouseOut={handleShow} onMouseOver={handleShow}>
+                <span className="text-xs cursor-pointer hover:underline hover:decoration-1">
+                  <div className="w-10 h-10 rounded-full">
+                    <img src={userInfo.avater} alt="avater" />
                   </div>
-                )}
+                  {hovering && (
+                    <div className="absolute -left-10">
+                      <UserSetting />
+                    </div>
+                  )}
+                </span>
               </div>
             ) : (
               <a className="rounded-lg bg-gray-100 px-5 py-2 text-sm font-medium text-gray-500" href="/login">

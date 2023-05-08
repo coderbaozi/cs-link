@@ -16,8 +16,8 @@ export default function App({ Component, pageProps }: AppProps) {
     const localCache = new Cache(CacheType.Local)
     const sessionCache = new Cache(CacheType.Session)
     store.dispatch(setTags(sessionCache.getCatch('tags')) ?? '')
-    store.dispatch(setToken(localCache.getCatch(SITE_TOKEN) ?? ''))
-    store.dispatch(setUserInfo(localCache.getCatch(USER_INFO) ?? {}))
+    store.dispatch(setToken(localCache.getCatch(SITE_TOKEN) ?? undefined))
+    store.dispatch(setUserInfo(localCache.getCatch(USER_INFO) ?? undefined))
   }, [persistence, setPersistence])
   return (
     <Provider store={store}>

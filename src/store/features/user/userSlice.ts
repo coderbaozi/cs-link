@@ -17,8 +17,12 @@ export interface ILoginUser {
   username: string
   password: string
 }
+interface IUserState {
+  userInfo: IUser | undefined
+  token: string | undefined
+}
 
-const initialState = {
+const initialState: IUserState = {
   userInfo: {} as IUser,
   token: undefined,
 }
@@ -33,9 +37,13 @@ export const userSlice = createSlice({
     setUserInfo: (state, action) => {
       state.userInfo = action.payload
     },
+    removeUserInfo: (state) => {
+      state.token = undefined
+      state.userInfo = undefined
+    },
   },
 })
 
 export default userSlice.reducer
 
-export const { setToken, setUserInfo } = userSlice.actions
+export const { setToken, setUserInfo, removeUserInfo } = userSlice.actions

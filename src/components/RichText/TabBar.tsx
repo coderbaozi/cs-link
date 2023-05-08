@@ -4,15 +4,16 @@ import Control from './Control'
 
 interface IProps {
   children?: ReactNode
+  mode: number
+  setMode: (mode: number) => void
 }
 
-const TabBar: React.FC<IProps> = () => {
-  const [activeIndex, setActiveIndex] = useState(0)
+const TabBar: React.FC<IProps> = ({ mode, setMode }) => {
   const handleClick = () => {
-    setActiveIndex(1)
+    setMode(1)
   }
   const handleCreation = () => {
-    setActiveIndex(0)
+    setMode(0)
   }
   return (
     <>
@@ -21,14 +22,14 @@ const TabBar: React.FC<IProps> = () => {
           <button
             onClick={handleCreation}
             className={`transition duration-150 leading-8 text-sm ml-2 mt-2 px-3 ${
-              activeIndex == 0 ? 'border-t border-l border-slate-200 border-r bg-white rounded-t-lg' : ''
+              mode == 0 ? 'border-t border-l border-slate-200 border-r bg-white rounded-t-lg' : ''
             }`}>
             Write
           </button>
           <button
             onClick={handleClick}
             className={`transition duration-150 leading-8 text-sm mt-2 px-3 ${
-              activeIndex == 1 ? 'border-t border-l border-slate-200 border-r bg-white rounded-t-lg' : ''
+              mode == 1 ? 'border-t border-l border-slate-200 border-r bg-white rounded-t-lg' : ''
             }`}>
             Preview
           </button>
