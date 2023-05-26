@@ -13,17 +13,16 @@ class Fetcher {
         return config
       },
       (err) => {
-        return err
+        return Promise.reject(err)
       },
     )
 
     this.instance.interceptors.response.use(
       (res) => {
-        // destruct axiosResponse one floor
         return res.data.data
       },
       (err) => {
-        return err
+        return Promise.reject(err)
       },
     )
 
@@ -46,10 +45,8 @@ class Fetcher {
           if (config.interceptors?.responseSuccessFn) {
             res = config.interceptors.responseSuccessFn(res)
           }
-          resolve(res)
-        })
-        .catch((err) => {
-          reject(err)
+          // @ts-expect-error let me see see
+          res.name === 'AxiosError'? reject(res) : resolve(res)
         })
     })
   }

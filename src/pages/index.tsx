@@ -1,25 +1,22 @@
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
 import { GetServerSidePropsContext } from 'next'
 import { getTags } from '@/fetch/api'
 import store from '@/store'
 import { setTags } from '@/store/features/nav/navSlice'
 import { useRouter } from 'next/router'
 import { Cache, CacheType } from '@/utils/Cache'
+import useRequest from '@/hooks/useRequest'
 interface IProps {
   children?: ReactNode
 }
 const Home: React.FC<IProps> = () => {
   const router = useRouter()
-
+  const { data: tags, loading, error } =  useRequest(getTags)
   useEffect(() => {
-    const fetchTagsData = async () => {
-      const tags = await getTags()
-      store.dispatch(setTags(tags))
-      const sessionCache = new Cache(CacheType.Session)
-      sessionCache.setCatch('tags', tags)
-    }
-    fetchTagsData()
-  }, [store])
+    store.dispatch(setTags(tags))
+    const sessionCache = new Cache(CacheType.Session)
+    sessionCache.setCatch('tags', tags)
+  }, [store,tags])
   return (
     <>
       <section className="overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center">
