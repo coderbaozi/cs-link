@@ -3,7 +3,9 @@ import RichEditor from '@/components/RichText/RichEditor'
 import TabBar from '@/components/RichText/TabBar'
 import { useTextArea } from '@/hooks/useTextArea'
 import React, { ReactNode, createContext, useEffect, useState } from 'react'
-import { markdownToHtml } from '@/utils/markdownToHtml'
+import MarkdownIt from 'markdown-it'
+import emoij from 'markdown-it-emoji'
+
 interface IProps {
   children?: ReactNode
 }
@@ -11,13 +13,17 @@ type TControl = (id: number) => void
 type TTextChange = (id: number) => void
 export const ControlContext = createContext<TControl | null>(null)
 const Creation: React.FC<IProps> = () => {
+  const md = MarkdownIt({
+    html: true,
+    typographer: true
+  })
+  md.use(emoij)
   useEffect(() => {
     foucusTextArea()
-    const res = markdownToHtml(text)
-    console.log(res)
   })
   const [type, setType] = useState(0)
-  const [text, setText] = useState('')
+  const [text, setText] = useState('## h2 Heading\n### h3 Heading')
+  const [mode, setMode] = useState(0)
   const { position, foucusTextArea, getCursorPosition, insertContent } = useTextArea()
   const enhanceGetCursorPosition = (textArea: HTMLTextAreaElement | null) => {
     return getCursorPosition(textArea)
@@ -80,9 +86,15 @@ const Creation: React.FC<IProps> = () => {
     <div className="relative">
       <div className="flex items-center flex-col justify-center w-4/5">
         <ControlContext.Provider value={handleControl}>
-          <TabBar />
+          <TabBar mode={mode} setMode={setMode} />
         </ControlContext.Provider>
-        <RichEditor getCursorPosition={enhanceGetCursorPosition} text={text} setText={setText} handleChange={handleChange} />
+        {mode === 0 ? (
+          <RichEditor getCursorPosition={enhanceGetCursorPosition} text={text} setText={setText} handleChange={handleChange} />
+        ) : (
+          <div className='w-1/2 rounded-b-md border-x border-b border-slate-200 p-2'>
+            <article className='prose' dangerouslySetInnerHTML={{ __html: md.render(text) }}></article>
+          </div>
+        )}
       </div>
       <div className="fixed top-8 right-10">
         <WriteTips />

@@ -28,7 +28,7 @@ const ArticleContent: React.FC<IProps> = ({ articleContent }) => {
         </div>
 
         <section className="text-lg w-full mt-3 font-sans">
-          <p>{articleContent.articleContent.content}</p>
+          <p className='prose lg:prose-xl'>{articleContent.articleContent.content}</p>
         </section>
       </main>
     </>
