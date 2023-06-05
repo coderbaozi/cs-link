@@ -5,6 +5,7 @@ import { useTextArea } from '@/hooks/useTextArea'
 import React, { ReactNode, createContext, useEffect, useState } from 'react'
 import MarkdownIt from 'markdown-it'
 import emoij from 'markdown-it-emoji'
+import ToolBar from './../components/toolBar'
 
 interface IProps {
   children?: ReactNode
@@ -22,7 +23,7 @@ const Creation: React.FC<IProps> = () => {
     foucusTextArea()
   })
   const [type, setType] = useState(0)
-  const [text, setText] = useState('## h2 Heading\n### h3 Heading')
+  const [text, setText] = useState(`## h2 Heading\n### h3 Heading`)
   const [mode, setMode] = useState(0)
   const { position, foucusTextArea, getCursorPosition, insertContent } = useTextArea()
   const enhanceGetCursorPosition = (textArea: HTMLTextAreaElement | null) => {
@@ -96,6 +97,7 @@ const Creation: React.FC<IProps> = () => {
           </div>
         )}
       </div>
+
       <div className="fixed top-8 right-10">
         <WriteTips />
       </div>
