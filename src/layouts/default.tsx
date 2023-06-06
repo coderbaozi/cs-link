@@ -6,7 +6,7 @@ interface IPros {
 
 const DefaultLayout: React.FC<IPros> = ({ children }) => {
   return (
-    <div className="layout">
+    <div>
       <header aria-label="Site Header" className="shadow-sm">
         <NavBar />
       </header>

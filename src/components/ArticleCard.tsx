@@ -6,6 +6,10 @@ interface IProps {
   article: IArticle
 }
 const ArticleCard: React.FC<IProps> = ({ article }) => {
+  const formatTime = () => {
+    const res = article.createTime.match(/\d{4}-\d{2}-\d{2}/g)
+    return res
+  }
   return (
     <article className="font-mono py-4">
       <Link className="text-xl hover:underline hover:decoration-1" href={`/topic/${article.articleId}`}>
@@ -18,7 +22,7 @@ const ArticleCard: React.FC<IProps> = ({ article }) => {
         <Link href="#" className="text-xs text-dark-100 hover:underline hover:decoration-1 hover:text-blue-600">
           {article.username}
         </Link>
-        <span className="text-neutral-400">{article.createTime}</span>
+        <span className="text-neutral-400">{formatTime()}</span>
         <span className="text-neutral-400">{`最后回复来自XX`}</span>
       </p>
     </article>

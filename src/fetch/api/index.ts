@@ -32,4 +32,8 @@ function getUserInfo(token: string) {
   return fetcher.get({ url: '/getUserInfo', headers: { Authorization: token } })
 }
 
-export { getTags, getArticleList, getUserName, getArticleInfo, getComment, login, getUserInfo }
+function getAriticleCount(tagId: string) {
+  return fetcher.get({ url: '/getArticleCount', params: { tagId } })
+}
+
+export { getTags, getArticleList, getUserName, getArticleInfo, getComment, login, getUserInfo, getAriticleCount }
