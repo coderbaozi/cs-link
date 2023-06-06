@@ -23,7 +23,10 @@ const ArticleCard: React.FC<IProps> = ({ article }) => {
           {article.username}
         </Link>
         <span className="text-neutral-400">{formatTime()}</span>
-        <span className="text-neutral-400">{`最后回复来自XX`}</span>
+        {article.lastCommentUsername && 
+          <span className="text-neutral-400">{`最后回复来自${article.lastCommentUsername}`}</span>
+        }
+
       </p>
     </article>
   )

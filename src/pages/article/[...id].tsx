@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef, useEffect, useState } from 'react'
+import React, { ReactNode, useRef } from 'react'
 import DefaultLayout from '@/layouts/default'
 import Head from 'next/head'
 import { IArticle } from '@/types'
@@ -49,8 +49,8 @@ const ArticlePage: React.FC<IProps> = ({tagId, articleList, articleCount }) => {
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-  console.log(context.query)
   const { id } = context.query
+  // @ts-expect-error let me see see
   const [tagId, page = 1] = id
   const articleList: IArticle[] = await getArticleList({ tagId, page })
   const articleCount = await getAriticleCount(tagId)

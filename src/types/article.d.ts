@@ -11,7 +11,8 @@ export interface IArticle {
   commentCount: number
   cover: string
   username: string
-  articleContent: ArticleContent
+  articleContent: ArticleContent,
+  lastCommentUsername: string
 }
 
 export interface ArticleContent {
